@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식 검색</title>
+</head>
+<body>
+    <h1>음식 검색</h1>
+    <label>음식 종류: </label>
+    <input type="text" id="food_type">
+    <label>위치: </label>
+    <input type="text" id="location">
+    <button onclick="search()">검색</button>
+
+    <ul id="results"></ul>
+
+    <script>
+        function search() {
+            const food_type = document.getElementById('food_type').value;
+            const location = document.getElementById('location').value;
+
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ food_type, location })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsElement = document.getElementById('results');
+                resultsElement.innerHTML = '';
+
+                data.forEach(restaurant => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${restaurant.link}">${restaurant.name} (${restaurant.rating})</a>`;
+                    resultsElement.appendChild(li);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
