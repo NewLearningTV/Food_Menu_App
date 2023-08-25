@@ -3,6 +3,8 @@
 
 YouTube 영상에 나온 앱의 코드를입니다.
 
+[![유튜브 영상](https://youtu.be/bTJJYUrCiZ8)]
+
 코드는 ChatGPT Code Interpreter를 바탕으로 수정하고 만들었고 이미지들은 Midjourney로 만들었습니다.
 
 This repo contains codes for the app mentioned in the YouTube video.
